@@ -29,6 +29,16 @@ public class SignupMentorRequest {
 
     private String userInfo;
 
+    private String school;
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
     @NotBlank
     @Size(max = 50)
     @Email

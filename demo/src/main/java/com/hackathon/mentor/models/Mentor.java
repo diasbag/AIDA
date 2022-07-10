@@ -36,6 +36,16 @@ public class Mentor {
 
     private String userInfo;
 
+    private String school;
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
     public Mentor(
                   int age, String iin, String number,
                   String major, String university,

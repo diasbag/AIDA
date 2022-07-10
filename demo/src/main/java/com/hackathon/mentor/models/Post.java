@@ -21,6 +21,18 @@ public class Post {
     @NotNull
     private String article;
 
+    @Lob
+    @Column(name = "image")
+    private byte[] image;
+
+    public byte[] getPhoto() {
+        return image;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.image = photo;
+    }
+
     @ManyToOne
     @JoinColumn(name = "mentor_id")
     private Mentor mentor;
