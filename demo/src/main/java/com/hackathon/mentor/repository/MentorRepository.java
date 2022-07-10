@@ -16,5 +16,6 @@ public interface MentorRepository extends JpaRepository<Mentor, Long> {
     @Query(value = "SELECT * FROM mentors", nativeQuery = true)
     List<Mentor> getAll();
 
+    Mentor findByUser(Long id);
     Page<Mentor> findAll(Pageable pageable);
 }

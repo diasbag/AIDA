@@ -22,7 +22,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	private String lastname;
 
-	private String username = firstname+lastname;
+	private String username;
 
 	private String email;
 
@@ -31,11 +31,12 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id,  String firstname, String lastname,  String email, String password,
+	public UserDetailsImpl(Long id,  String firstname, String lastname, String username,  String email, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname =lastname;
+		this.username = firstname+lastname;
 		this.email = email;
 		this.password = password;
 		this.authorities = authorities;
@@ -51,25 +52,11 @@ public class UserDetailsImpl implements UserDetails {
 				user.getEmail(),
 				user.getFirstname(),
 				user.getLastname(),
-//				user.getUsername(),
+				user.getUsername(),
 				user.getPassword(),
 				authorities);
 	}
 
-//	public static UserDetailsImpl buildMentor(Mentor mentor) {
-//		List<GrantedAuthority> authorities = mentor.getRoles().stream()
-//				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
-//				.collect(Collectors.toList());
-//
-//		return new UserDetailsImpl(
-//				mentor.getId(),
-//				mentor.getEmail(),
-//				mentor.getFirstname(),
-//				mentor.getLastname(),
-////				user.getUsername(),
-//				mentor.getPassword(),
-//				authorities);
-//	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -92,7 +79,7 @@ public class UserDetailsImpl implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return firstname+lastname;
+		return username;
 	}
 
 	@Override

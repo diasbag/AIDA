@@ -34,7 +34,6 @@ public class SignupMentorRequest {
     @Email
     private String email;
 
-    private String role;
 
     @NotBlank
     @Size(min = 6, max = 40)
@@ -120,13 +119,6 @@ public class SignupMentorRequest {
         return userInfo;
     }
 
-    //    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
 
     public String getEmail() {
         return email;
@@ -144,8 +136,6 @@ public class SignupMentorRequest {
         this.password = password;
     }
 
-    public String getRole() {
-        return this.role;
-    }
+
 
 }
