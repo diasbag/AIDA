@@ -55,7 +55,7 @@ public class PostController {
     }
 
     @PostMapping("/post")
-    public ResponseEntity<?> createPost(@Valid @RequestBody PostRequest postRequest, @RequestParam("image")MultipartFile file, HttpServletRequest request) {
+    public ResponseEntity<?> createPost(@Valid @RequestBody PostRequest postRequest, @RequestParam MultipartFile file, HttpServletRequest request) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = userDetails.getUsername();
 
