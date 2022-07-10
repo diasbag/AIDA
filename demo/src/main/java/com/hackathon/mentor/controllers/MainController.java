@@ -69,21 +69,17 @@ public class MainController {
         Mentor mentor = mentorRepository.findByUser(user);
         return new ResponseEntity<>(mentor, HttpStatus.OK);
     }
-    @PutMapping("/mentors/{id}")
-    @PreAuthorize("#id == authentication.principal.id or hasRole('ADMIN')")
-    public ResponseEntity<?> updateMentor(@PathVariable("id") Long id, @RequestBody  UpdateMentorRequest signupMentorRequest) {
-
+    @PutMapping("/mentors/profile/edit")
+    public ResponseEntity<?> updateMentor(@RequestBody  UpdateMentorRequest signupMentorRequest) {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String email = userDetails.getUsername();
-
-
         User user = userRepository.getByEmail(email);
-        Mentor mentor = mentorRepository.findById(id).orElseThrow(() -> new RuntimeException("Mentor Not Found!!!!"));
-        System.out.println("888888888888888  " + signupMentorRequest.getEmail());
+        Mentor mentor = mentorRepository.findByUser(user);
+
         user.setEmail(signupMentorRequest.getEmail());
         user.setFirstname(signupMentorRequest.getFirstname());
         user.setLastname(signupMentorRequest.getLastname());
-        System.out.println(user.getId() +" "+ user.getEmail());
+
         userRepository.save(user);
 
         mentor.setAge(signupMentorRequest.getAge());

@@ -5,10 +5,10 @@ import java.util.Set;
 
 public class SignupMentorRequest {
     @NotBlank
-    @Size(min = 3, max = 20)
+    @Size(min = 1, max = 20)
     private String firstname;
     @NotBlank
-    @Size(min = 3, max = 20)
+    @Size(min = 1, max = 20)
     private String lastname;
 
     @Min(value = 0, message = "Age < 0")
@@ -31,6 +31,16 @@ public class SignupMentorRequest {
 
     private String school;
 
+    @NotBlank
+    @Size(max = 50)
+    @Email
+    private String email;
+
+
+    @NotBlank
+    @Size(min = 4, max = 40)
+    private String password;
+
     public String getSchool() {
         return school;
     }
@@ -39,15 +49,7 @@ public class SignupMentorRequest {
         this.school = school;
     }
 
-    @NotBlank
-    @Size(max = 50)
-    @Email
-    private String email;
 
-
-    @NotBlank
-    @Size(min = 6, max = 40)
-    private String password;
 
     public String getFirstname() {
         return firstname;
