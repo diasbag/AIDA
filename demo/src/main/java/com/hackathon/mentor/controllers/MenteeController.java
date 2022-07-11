@@ -7,6 +7,7 @@ import com.hackathon.mentor.payload.request.UpdateMenteeRequest;
 import com.hackathon.mentor.repository.MenteeRepository;
 import com.hackathon.mentor.repository.RoleRepository;
 import com.hackathon.mentor.repository.UserRepository;
+import com.hackathon.mentor.security.services.MentorService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-//@SecurityRequirement(name = "basicauth")
+@SecurityRequirement(name = "basicauth")
 @RequestMapping("/api")
 public class MenteeController {
 
@@ -35,6 +36,9 @@ public class MenteeController {
 
     @Autowired
     RoleRepository roleRepository;
+
+    @Autowired
+    MentorService mentorService;
 
     @GetMapping("/mentees")
     public ResponseEntity<?> getAllMentees() {
@@ -81,5 +85,10 @@ public class MenteeController {
         mentee.setNumber(updateMenteeRequest.getNumber());
         menteeRepository.save(mentee);
         return new ResponseEntity<>(mentee, HttpStatus.OK);
+    }
+
+    @PostMapping("/mentees/mentors/{id}")
+    public ResponseEntity<?> rateMentor(@PathVariable("id") Long id, @RequestParam("rate") Double rate) {
+        return mentorService.rateMentor(id, rate);
     }
 }

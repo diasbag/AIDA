@@ -82,7 +82,7 @@ public class PostController {
             post.setTitle(postRequest.getTitle());
             post.setDate(Date.from(Instant.now()));
             post.setArticle(postRequest.getArticle());
-            post.setPhoto(imageData);
+            //post.setPhoto(imageData);
             User user = userRepository.getByEmail(email);
             Mentor mentor = mentorRepository.findByUser(user);
             post.setMentor(mentor);

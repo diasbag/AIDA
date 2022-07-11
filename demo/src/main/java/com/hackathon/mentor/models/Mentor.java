@@ -38,13 +38,12 @@ public class Mentor {
 
     private String school;
 
-    public String getSchool() {
-        return school;
-    }
+    @Column(name = "rating")
+    private double rating;
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
+    @Column(name = "peopleCount")
+    private long peopleCount;
+
 
     public Mentor(
                   int age, String iin, String number,
@@ -63,6 +62,31 @@ public class Mentor {
 
     public Mentor() {
 
+    }
+
+
+    public long getPeopleCount() {
+        return peopleCount;
+    }
+
+    public void setPeopleCount(long peopleCount) {
+        this.peopleCount = peopleCount;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
+    }
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
     }
 
 
